@@ -2,6 +2,9 @@ package ventana;
 
 import java.util.Random;
 import javax.swing.Timer;
+
+import elementos.ColorIterator;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import pintor.*;
@@ -21,11 +24,13 @@ public class PanelController {
 		this.modelo = modelo;
 		this.vista = vista;
 		initEventHandlers();
+		handleGammaClick();
 	}
 	
 	private void initEventHandlers() {
 		vista.getBtnPintar().addActionListener(e -> handlePintarClick());;
 		vista.getBtnLimpiar().addActionListener(e -> handleLimpiarClick());
+		vista.getBtnCambiarGamma().addActionListener(e -> handleGammaClick());
 	}
 	
 	//Handlers
@@ -65,6 +70,12 @@ public class PanelController {
 	
 	public void handleLimpiarClick() {
 		vista.limpiarLienzo();
+		
+	}
+	
+	public void handleGammaClick() {
+		colorIterator = new ColorIterator(generarNumAleatorio(0, 255), generarNumAleatorio(0, 255), generarNumAleatorio(0, 255));
+		vista.cambiarGammaPanel(colorIterator.nextColor());
 	}
 	
 	public int generarNumAleatorio(int min, int max) {
@@ -77,19 +88,37 @@ public class PanelController {
 	int xVar = generarNumAleatorio(PANEL_X_min, PANEL_X_max);
 	int yVar = generarNumAleatorio(PANEL_Y_min, PANEL_Y_max);
 	Coords coords = new Coords(xVar, yVar);
+	// Color.
+	ColorIterator colorIterator = new ColorIterator(generarNumAleatorio(0, 255), generarNumAleatorio(0, 255), generarNumAleatorio(0, 255));
+	int grosor = random.nextInt(20) + 1;
 	
 	// Generar pintor random
 	private Pintor pintorRandom() {
 		int numeroAleatorio = random.nextInt(3);
-		int grosor = random.nextInt(20) + 1;
+		int coinflip = random.nextInt(2);
+		
+		if (coinflip == 1) {
+			grosor = grosor + 2;
+		} else {
+			grosor = grosor - 2;
+		}
+		int grosorMinimo = 5; 
+		int grosorMaximo = 40; 
+		
+		if (grosor < grosorMinimo) {
+		    grosor = grosorMinimo;
+		} else if (grosor > grosorMaximo) {
+		    grosor = grosorMaximo;
+		}
+		
 		int elementos = Integer.parseInt(vista.getElementos().getText()); 
 		//System.out.println(numeroAleatorio);
 		if (numeroAleatorio == 0) {
-			return new PintorLunares(elementos, grosor, coords);
+			return new PintorLunares(elementos, grosor, coords, colorIterator);
 		} else if (numeroAleatorio == 1) {
-			return new PintorPoligono(elementos, grosor, coords);
+			return new PintorPoligono(elementos, grosor, coords, colorIterator);
 		} else {
-			return new PintorRayas(elementos, grosor, coords);
+			return new PintorRayas(elementos, grosor, coords, colorIterator);
 		}
 	}
 }

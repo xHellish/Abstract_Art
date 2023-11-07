@@ -12,9 +12,7 @@ public abstract class Pintor {
 	public static final int PANEL_Y_max = 20 + 404;
 	
 	public Coords coords = new Coords(0, 0);
-	
 	public Vector<Object> formas = new Vector<>();
-	
 	public Vector<Object> obtenerVectorFormas(){
     	return formas;
     }
@@ -41,7 +39,5 @@ public abstract class Pintor {
         Random rand = new Random();
         int numRandom = rand.nextInt(max - min + 1) + min;
         return numRandom;
-    }
-    
-    
+    } 
 }

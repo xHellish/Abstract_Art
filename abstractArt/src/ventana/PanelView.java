@@ -14,15 +14,18 @@ import java.util.List;
 import elementos.*;
 
 public class PanelView extends JFrame {
-	
 	private List<Object> formas = new ArrayList<>();
 	
 	private JTextField textField;
     private JTextField textField_1;
+    
     private JButton btnNewButton;
     private JButton btnLimpiar;
+    private JButton btnCambiarGamma;
+    
     private JPanel panel;
     private JPanel lienzo;
+    private JPanel gammaColorPanel;
     private JLabel lblElementos;
     
     public PanelView() {
@@ -64,6 +67,11 @@ public class PanelView extends JFrame {
         btnLimpiar.setBounds(10, 128, 148, 29);
         panel.add(btnLimpiar);
         
+        btnCambiarGamma = new JButton("Cambiar Gamma ");
+        btnCambiarGamma.setFont(new Font("Tahoma", Font.BOLD, 12));
+        btnCambiarGamma.setBounds(10, 168, 148, 29);
+        panel.add(btnCambiarGamma);
+        
         lblElementos = new JLabel("Elementos");
         lblElementos.setFont(new Font("Tahoma", Font.BOLD, 15));
         lblElementos.setBounds(10, 44, 87, 20);
@@ -73,7 +81,11 @@ public class PanelView extends JFrame {
         textField_1.setColumns(10);
         textField_1.setBounds(107, 46, 51, 20);
         panel.add(textField_1);
-
+        
+        gammaColorPanel = new JPanel();
+        gammaColorPanel.setBounds(10, 208, 148, 20);
+        panel.add(gammaColorPanel);
+        
         // Lienzo
         lienzo = new JPanel();
         lienzo.setBounds(178, 11, 846, 404);
@@ -100,7 +112,6 @@ public class PanelView extends JFrame {
             }
         }
     }
-    
     //Limpiar lienzo
     public void limpiarLienzo() {
     	formas.clear();
@@ -112,6 +123,10 @@ public class PanelView extends JFrame {
     public void repintarLienzo() {
     	lienzo.revalidate();
     	lienzo.repaint();
+    }
+    
+    public void cambiarGammaPanel(Color color) {
+    	gammaColorPanel.setBackground(color);
     }
 
 	public JTextField getTextField() {
@@ -128,5 +143,9 @@ public class PanelView extends JFrame {
 
 	public JButton getBtnLimpiar() {
 		return btnLimpiar;
+	}
+	
+	public JButton getBtnCambiarGamma() {
+		return btnCambiarGamma;
 	}
 }

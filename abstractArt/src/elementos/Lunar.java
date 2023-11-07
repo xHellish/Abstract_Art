@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Lunar {
-	
 	private int x;
     private int y;
     private int radio;

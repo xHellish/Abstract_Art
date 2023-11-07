@@ -5,7 +5,6 @@ import java.util.Vector;
 import pintor.Pintor;
 
 public class PanelModel {
-	
 	Vector<Pintor> pintores = new Vector<>();
 	
 	public void agregarPintor(Pintor pintor) {
@@ -25,6 +24,4 @@ public class PanelModel {
 			System.out.println(pintor.determinarEstilo());
 		}
 	}
-	
-	
 }

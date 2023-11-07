@@ -7,7 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 
 public class Raya {
-	
 	private int x1;
     private int y1;
     private int x2;
@@ -30,5 +29,4 @@ public class Raya {
         g2d.setStroke(new BasicStroke(grosor));
         g2d.draw(new Line2D.Double(x1, y1, x2, y2));
     }
-
 }

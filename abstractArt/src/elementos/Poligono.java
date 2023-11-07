@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Poligono {
-	
 	private int grosor;
     private int cantidadLados;
     private Path2D.Double path;
@@ -21,12 +20,14 @@ public class Poligono {
         this.grosor = grosor;
         this.cantidadLados = cantidadLados;
         this.color = color;
+        
         path = new Path2D.Double();
         vertices = new ArrayList<>();
-        
+  
         double radio = 50.0; 
         double centroX = xCentro; 
         double centroY = yCentro; 
+        
         for (int i = 0; i < cantidadLados; i++) {
             double angulo = 2 * Math.PI * i / cantidadLados;
             double x = centroX + radio * Math.cos(angulo);
@@ -47,5 +48,4 @@ public class Poligono {
         g2d.setStroke(new BasicStroke(grosor));
         g2d.draw(path);
     }
-
 }
