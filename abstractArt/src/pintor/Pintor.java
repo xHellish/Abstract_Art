@@ -12,23 +12,23 @@ public abstract class Pintor {
 	public static final int PANEL_Y_min = 11 + 50;
 	public static final int PANEL_Y_max = 20 + 404;
 	
+	public Coords coords = new Coords(PANEL_X_min, PANEL_Y_min);
+	
 	public Vector<Object> formas = new Vector<>();
 	
+	public Vector<Object> obtenerVectorFormas(){
+    	return formas;
+    }
+    
+    public void vectorInfo () {
+    	for (Object forma : formas) {
+    		System.out.println(forma);
+    	}
+    }
+    
     public String determinarEstilo() {
 		return null;
 	}
-    
-    protected void pintarLunares(int cantidad, Color color, int tamano) {
-    	
-    }
-    
-    void pintarRayas(int lados, Color color, int tamano) {
-    	
-    }
-    
-    void pintarPoligono(int cantidad, Color color, int grosor) {
-    	
-    }
     
     public Color generarColorAleatorio() {
         Random rand = new Random();
@@ -46,13 +46,5 @@ public abstract class Pintor {
         return numRandom;
     }
     
-    public Vector<Object> obtenerVectorFormas(){
-    	return formas;
-    }
     
-    public void vectorInfo () {
-    	for (Object forma : formas) {
-    		System.out.println(forma);
-    	}
-    }
 }

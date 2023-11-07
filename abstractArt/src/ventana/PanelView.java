@@ -23,7 +23,6 @@ public class PanelView extends JFrame {
     private JButton btnLimpiar;
     private JPanel panel;
     private JPanel lienzo;
-    
     private JLabel lblElementos;
     
     public PanelView() {
@@ -78,8 +77,6 @@ public class PanelView extends JFrame {
         // Lienzo
         lienzo = new JPanel();
         lienzo.setBounds(178, 11, 846, 404);
-        
-        
         getContentPane().add(lienzo);
     }
     
@@ -108,6 +105,11 @@ public class PanelView extends JFrame {
     public void limpiarLienzo() {
     	formas.clear();
     	lienzo.removeAll();
+    	lienzo.revalidate();
+    	lienzo.repaint();
+    }
+    
+    public void repintarLienzo() {
     	lienzo.revalidate();
     	lienzo.repaint();
     }
