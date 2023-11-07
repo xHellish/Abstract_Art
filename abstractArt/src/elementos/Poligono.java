@@ -17,7 +17,7 @@ public class Poligono {
     private List<Point2D.Double> vertices;
     private Color color;
 
-    public Poligono(int grosor, int cantidadLados, Color color) {
+    public Poligono(int grosor, int cantidadLados, Color color, int xCentro, int yCentro) {
         this.grosor = grosor;
         this.cantidadLados = cantidadLados;
         this.color = color;
@@ -25,8 +25,8 @@ public class Poligono {
         vertices = new ArrayList<>();
         
         double radio = 50.0; 
-        double centroX = 100.0; 
-        double centroY = 100.0; 
+        double centroX = xCentro; 
+        double centroY = yCentro; 
         for (int i = 0; i < cantidadLados; i++) {
             double angulo = 2 * Math.PI * i / cantidadLados;
             double x = centroX + radio * Math.cos(angulo);

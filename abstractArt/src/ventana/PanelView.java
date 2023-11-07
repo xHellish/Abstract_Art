@@ -103,6 +103,14 @@ public class PanelView extends JFrame {
             }
         }
     }
+    
+    //Limpiar lienzo
+    public void limpiarLienzo() {
+    	formas.clear();
+    	lienzo.removeAll();
+    	lienzo.revalidate();
+    	lienzo.repaint();
+    }
 
 	public JTextField getTextField() {
 		return textField;

@@ -17,42 +17,37 @@ public class PanelController {
 	
 	private void initEventHandlers() {
 		vista.getBtnPintar().addActionListener(e -> handlePintarClick());;
-		
+		vista.getBtnLimpiar().addActionListener(e -> handleLimpiarClick());
 	}
 	
+	// Handlers
 	private void handlePintarClick() {
 		if (!vista.getTextField().getText().trim().isEmpty()) {
 			for (int i = 0; i < Integer.parseInt(vista.getTextField().getText()); i++) {
 				modelo.agregarPintor(pintorRandom());
 			}
-			
 			for (Pintor pintor : modelo.getPintores()) {
-				
 				for (Object forma : pintor.obtenerVectorFormas()) {
 					vista.agregarForma(forma);
-					
 				}
-				
 				//System.out.println("Tipo: " + pintor.determinarEstilo());
 				//pintor.vectorInfo();
 			}
 		}
-		
 		//modelo.imprimirPintores();
-		
 		modelo.limpiarPintores();
-		
+	}
+	
+	public void handleLimpiarClick() {
+		vista.limpiarLienzo();
 	}
 	
 	// Generar pintor random
 	private Pintor pintorRandom() {
 		int numeroAleatorio = random.nextInt(3);
-		
 		int grosor = random.nextInt(20) + 1;
 		int elementos = Integer.parseInt(vista.getElementos().getText()); 
-		
 		//System.out.println(numeroAleatorio);
-		
 		if (numeroAleatorio == 0) {
 			return new PintorLunares(elementos, grosor);
 		} else if (numeroAleatorio == 1) {
@@ -60,13 +55,5 @@ public class PanelController {
 		} else {
 			return new PintorRayas(elementos, grosor);
 		}
-	}
-	
-	// Hacer pintura en lienzo
-	
-	private void hacerArte() {
-		
-		
-		
 	}
 }

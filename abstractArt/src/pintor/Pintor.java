@@ -6,6 +6,12 @@ import java.util.Vector;
 
 public abstract class Pintor {
 	
+	// Constantes para el arte en el lienzo
+	public static final int PANEL_X_min = 178 + 30;
+	public static final int PANEL_X_max = 165 + 846;
+	public static final int PANEL_Y_min = 11 + 50;
+	public static final int PANEL_Y_max = 20 + 404;
+	
 	public Vector<Object> formas = new Vector<>();
 	
     public String determinarEstilo() {
@@ -15,9 +21,11 @@ public abstract class Pintor {
     protected void pintarLunares(int cantidad, Color color, int tamano) {
     	
     }
+    
     void pintarRayas(int lados, Color color, int tamano) {
     	
     }
+    
     void pintarPoligono(int cantidad, Color color, int grosor) {
     	
     }
