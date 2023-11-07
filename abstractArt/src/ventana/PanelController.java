@@ -1,10 +1,13 @@
 package ventana;
 
 import java.util.Random;
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import pintor.*;
 
 public class PanelController {
-	// Constantes para el arte en el lienzo
+	//Constantes de las coords en el lienzo
 	public static final int PANEL_X_min = 178 + 30;
 	public static final int PANEL_X_max = 165 + 846;
 	public static final int PANEL_Y_min = 11 + 50;
@@ -25,34 +28,39 @@ public class PanelController {
 		vista.getBtnLimpiar().addActionListener(e -> handleLimpiarClick());
 	}
 	
-	// Handlers
+	//Handlers
 	private void handlePintarClick() {
 		if (!vista.getTextField().getText().trim().isEmpty()) {
-			for (int i = 0; i < Integer.parseInt(vista.getTextField().getText()); i++) {
-				modelo.agregarPintor(pintorRandom());
-			}
-			
-			for (Pintor pintor : modelo.getPintores()) {
-				for (Object forma : pintor.obtenerVectorFormas()) {
-					vista.agregarForma(forma);
-					
-				}
-				
-				try {
-				    Thread.sleep(1); 
-				} catch (InterruptedException e) {
-				    
-				}
-				vista.repintarLienzo();
-				
-				
-				
-				//System.out.println("Tipo: " + pintor.determinarEstilo());
-				//pintor.vectorInfo();
-			}
-		}
+	        int cantidadFormas = Integer.parseInt(vista.getTextField().getText());
+
+	        for (int i = 0; i < cantidadFormas; i++) {
+	            modelo.agregarPintor(pintorRandom());
+	        }
+	        
+	        //Actualizar el lienzo por cada pintor por medio de un Timer
+	        Timer timer = new Timer(300, new ActionListener() {
+	            private int currentIndex = 0;
+
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	                if (currentIndex < modelo.getPintores().size()) {
+	                    Pintor pintor = modelo.getPintores().get(currentIndex);
+	                    for (Object forma : pintor.obtenerVectorFormas()) {
+	                        vista.agregarForma(forma);
+	                    }
+	                    //vista.repintarLienzo();
+	                    currentIndex++;
+	                } else {
+	                    ((Timer) e.getSource()).stop();
+	                    modelo.limpiarPintores();
+	                }
+	            }
+	        });
+
+	        timer.start();
+	    }
 		//modelo.imprimirPintores();
-		modelo.limpiarPintores();
+		//modelo.limpiarPintores();
 	}
 	
 	public void handleLimpiarClick() {
